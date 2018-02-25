@@ -79,7 +79,7 @@ class Analyze extends Component {
       if(this.state.imagePreviewUrl != ''){
         this.setState({hover: true})
       }
-      
+
       //console.log(hover)
     }
 
@@ -107,23 +107,23 @@ class Analyze extends Component {
     let component = this;
     const imagePreviewUrl = encodeURIComponent(this.state.imagePreviewUrl);
     // const formData = `data=${data_url}`;
-    axios.post('127.0.0.1:8080', imagePreviewUrl)
-      .then(function (response) {
-        console.log(response);
-//            location.href = '/dashboard';
-        // component.setState({
-        //     redirect: true,
-        //     billDetails: response.data
-        // })
-      })
-      .catch(function (error) {
-        console.log(error);
-        component.setState({
-          message: 'Incorrect request call'
-        })
-      });
+//     axios.post("http://localhost:8080", imagePreviewUrl)
+//       .then(function (response) {
+//         console.log(response);
+// //            location.href = '/dashboard';
+//         // component.setState({
+//         //     redirect: true,
+//         //     billDetails: response.data
+//         // })
+//       })
+//       .catch(function (error) {
+//         console.log(error);
+//         component.setState({
+//           message: 'Incorrect request call'
+//         })
+//       });
 
-    axios.get('127.0.0.1:8080')
+    axios.get("http://localhost:8080")
       .then(function (response) {
         console.log(response);
 //            location.href = '/dashboard';
@@ -137,7 +137,7 @@ class Analyze extends Component {
                 message: 'Incorrect request call'
             });
       });
-    
+
   }
 
   _handleImageChange(e) {

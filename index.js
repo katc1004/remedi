@@ -26,6 +26,7 @@ const allowCrossDomain = function (request, resource, next) {
     resource.header("Access-Control-Allow-Methods", "POST, GET, PUT, DELETE, OPTIONS");
     next();
 };
+
 app.use(allowCrossDomain);
 app.use(cors());
 app.options('*', cors());
