@@ -226,7 +226,7 @@ class Dashboard extends Component {
                           </Link>
                         </Menu.Item>
                         <Menu.Item>
-                          <Link to={{pathname:"/dashboard", state: this.state}} className="" id="logo">Clearity</Link>
+                          <Link to={{pathname:"/dashboard", state: this.state}} className="" id="logo">remedi_frontend</Link>
                         </Menu.Item>
                         <Menu.Item>
                           <Link to="/login" className="right">
