@@ -28,12 +28,13 @@
 }
 #logo_analyze{
 	// font: bold 60px 'Quicksand', sans-serif;
-	color:white !important;
+	color: #30BDDB !important;
 	font-size: 30px;
 	font-weight: bold;
 }
 .bill_blue{
     // background-image: url($home-image) !important;
+    background-image: url($background-image) !important;
     background-size: cover !important;
     background-color: #30BDDB !important;
     min-height: 100vh;
