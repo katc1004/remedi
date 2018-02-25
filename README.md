@@ -12,4 +12,4 @@ $ npm run dev
 ```
 
 ## Contributor Guide
-CONTRIBUTING.md
+[CONTRIBUTING.md](https://github.com/sarahjliu/remedi/blob/master/Contributing.md)
