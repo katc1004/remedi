@@ -7,7 +7,8 @@ import 'semantic-ui-css/semantic.min.css';
 import Home from './components/Home/Home.jsx';
 import Login from './components/Login/Login.jsx';
 import Register from './components/Register/Register.jsx';
-import Dashboard from './components/Dashboard/Dashboard.jsx';
+import Analyze from './components/Analyze/Analyze.jsx';
+import LoginModal from './components/Login/Login.jsx';
 
 // Include any new stylesheets here
 // Note that components' stylesheets should NOT be included here.
@@ -20,7 +21,7 @@ render(
             <Route exact path="/" component={Home}/>
             <Route path="/login" component={Login}/>
             <Route path="/register" component={Register}/>
-            <Route path="/dashboard" component={Dashboard}/>
+            <Route path="/analyze" component={Analyze}/>
         </Switch>
     </Router>,
     document.getElementById('app')
