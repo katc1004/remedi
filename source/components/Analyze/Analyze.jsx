@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Button, Card, Popup} from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
+import axios from 'axios'
 
 import styles from './Analyze.scss'
 
@@ -78,7 +79,7 @@ class Analyze extends Component {
       if(this.state.imagePreviewUrl != ''){
         this.setState({hover: true})
       }
-
+      
       //console.log(hover)
     }
 
@@ -103,6 +104,40 @@ class Analyze extends Component {
     e.preventDefault();
     // TODO: do something with -> this.state.file
     console.log('handle uploading-', this.state.file);
+    let component = this;
+    const imagePreviewUrl = encodeURIComponent(this.state.imagePreviewUrl);
+    // const formData = `data=${data_url}`;
+    axios.post('127.0.0.1:8080', imagePreviewUrl)
+      .then(function (response) {
+        console.log(response);
+//            location.href = '/dashboard';
+        // component.setState({
+        //     redirect: true,
+        //     billDetails: response.data
+        // })
+      })
+      .catch(function (error) {
+        console.log(error);
+        component.setState({
+          message: 'Incorrect request call'
+        })
+      });
+
+    axios.get('127.0.0.1:8080')
+      .then(function (response) {
+        console.log(response);
+//            location.href = '/dashboard';
+        // component.setState({
+        //     billDetails: response.data
+        // })
+      })
+      .catch(function (error) {
+        console.log(error);
+        component.setState({
+                message: 'Incorrect request call'
+            });
+      });
+    
   }
 
   _handleImageChange(e) {
@@ -120,8 +155,9 @@ class Analyze extends Component {
       console.log(reader.result)
       console.log("stop")
     }
-
+      console.log("boop")
     reader.readAsDataURL(file)
+
   }
 
     render() {
