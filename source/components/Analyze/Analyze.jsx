@@ -106,6 +106,7 @@ class Analyze extends Component {
           $imagePreview = (<div className="previewText">U DIDNT IMAGE </div>);
         }
 
+      const { x, y } = this.state;
         return(
             <div className="wrapper-home">
               <div className="ui vertical masthead center aligned segment bill_blue">
@@ -137,10 +138,14 @@ class Analyze extends Component {
                     </div>
                   </div> 
                 </div>
+                    <div onMouseMove={this.onMouseMove.bind(this)} id="Image-container">
+                      <h1>Mouse coordinates: { x } { y }</h1>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+
         )
     }
 }

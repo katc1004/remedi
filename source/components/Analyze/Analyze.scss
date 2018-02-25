@@ -45,6 +45,7 @@
 	width: 75%;
 }
 
+
 .imgPreview {
   text-align: center;
   margin: 5px 15px;
@@ -59,3 +60,10 @@
     height: 100%;
 	}
 }
+
+#Image-container {
+	display: block;
+	overflow: scroll;
+	margin-top: 50px;
+}
+
