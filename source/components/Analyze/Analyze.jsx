@@ -4,24 +4,7 @@ import { Link } from 'react-router-dom'
 
 import styles from './Analyze.scss'
 
-class Home extends Component {
-    constructor(props) {
-      super(props);
-      this.state ={
-        image:null
-      }
-      this.formSubmit = this.formSubmit.bind(this)
-      this.onFileInput = this.onFileInput.bind(this)
-    }
-    formSubmit(e){
-
-    }
-    onChange(e) {
-      
-    }
-    fileUpload(file){
-      
-    }
+class Analyze extends Component {
 
     render() {
         return(
@@ -39,8 +22,8 @@ class Home extends Component {
                 </div>
                 <div className="Home">
                   <div className="ui segment" id="Analyze-container">
-                    <h2 className="ui header" id="title-remedi">
-                      Analyze My Bill
+                    <h2 className="ui header" id="title">
+                    Analyze My Bill
                     </h2>
                     <form className="ui action input" onSubmit={this.formSubmit}>
                       <input className="fileInput" type="file" onChange={this.onFileInput} />
@@ -54,6 +37,6 @@ class Home extends Component {
     }
 }
 
-export default Home
+export default Analyze
 
 
