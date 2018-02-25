@@ -57,24 +57,29 @@ class Analyze extends Component {
           });
         }
     onMouseMove(e) {
-      this.setState({ 
-          x: e.nativeEvent.offsetX, 
+      this.setState({
+          x: e.nativeEvent.offsetX,
           y: e.nativeEvent.offsetY,
           hover: false
       });
       // for(int i = 0; i < list.length; i++){
       //   if(this.x > list[i][x]){
-      //     this.setState({ 
+      //     this.setState({
       //       hover: true
       //     });
       //   }
       // }
-      if(this.x > 0){
-        this.setState({ 
-          hover: true
-        });
+      // if(this.x > 0){
+      //   this.setState({
+      //     hover: true
+      //   });
+      // }
+
+      if(this.state.imagePreviewUrl != ''){
+        this.setState({hover: true})
       }
-      console.log(hover)
+
+      //console.log(hover)
     }
 
     onChangeEmail(e) {
@@ -150,21 +155,23 @@ class Analyze extends Component {
                     </div>
                     <div className="previewComponent">
                     <form className="ui action input" onSubmit={(e)=>this._handleSubmit(e)}>
-                      <input className="fileInput" 
-                          type="file" 
+                      <input className="fileInput"
+                          type="file"
                           onChange={(e)=>this._handleImageChange(e)} />
                       <button className="ui button" type="submit" onClick={(e)=>this._handleSubmit(e)}>Upload My Bill</button>
                     </form>
                     <div>Mouse coordinates: { x } { y } (remove later)</div>
                     <div className="imgPreview" onMouseMove={this.onMouseMove.bind(this)}>
                         {$imagePreview}
-                        <Popup
-                          trigger={this.state.hover}
-                          header={this.state.x}
-                          content={this.state.y}
-                        />
+                        {this.state.hover && (<Popup
+                          trigger={<div className="hoverplaceholder" style={{position:'absolute', top: 322, left: 108}}>......</div>}
+                          //header={this.state.x + ', ' + this.state.y}
+                          // content={}
+                          header = {'Code 510120'}
+                          on = 'hover'
+                        /> )}
                     </div>
-                  </div> 
+                  </div>
                 </div>
                   </div>
                 </div>
@@ -176,5 +183,3 @@ class Analyze extends Component {
 }
 
 export default Analyze
-
-
