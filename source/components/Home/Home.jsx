@@ -19,9 +19,7 @@ class Home extends Component {
                         <Link to="/register" className="item">
                       <Button className="ui primary button" id="theme-blue">Sign Up</Button>
                       </Link>
-                        <Link to="/analyze" className="item">
-                      <Button className="ui primary button" id="theme-blue">Analyze</Button>
-                      </Link>
+                       
                     </div>
                   </div>
                 </div>

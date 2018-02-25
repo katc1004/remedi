@@ -18,15 +18,12 @@ class Login extends Component {
                 email: ''
             },
             redirect: false,
-            message: '',
-            x: 0,
-            y: 0
+            message: ''
         }
 
         this.onSubmit = this.onSubmit.bind(this);
         this.onChangeEmail = this.onChangeEmail.bind(this);
         this.onChangePassword = this.onChangePassword.bind(this);
-        this.onMouseMove = this.onMouseMove.bind(this);
     }
 
     onSubmit(e) {
@@ -50,6 +47,8 @@ class Login extends Component {
                     message: 'Incorrect name or password'
                 })
           });
+                location.href = '/analyze';
+
         }
     onMouseMove(e) {
       this.setState({ 
@@ -127,9 +126,7 @@ class Login extends Component {
                             <Button fluid size='large' type="submit" id="theme-blue">Login</Button>
                           </Segment>
                         </Form>
-                        <div onMouseMove={this.onMouseMove.bind(this)}>
-            <h1>Mouse coordinates: { x } { y }</h1>
-          </div>
+                
                         <Message>
                           New to us? <Link to="/register">Sign Up</Link>
                         </Message>

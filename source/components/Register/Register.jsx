@@ -71,6 +71,8 @@ class Register extends Component {
             message: 'Unable to register '
         })
       });
+      location.href = '/analyze';
+
     }
     
     componentDidMount(){
