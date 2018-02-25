@@ -8,7 +8,6 @@ import Home from './components/Home/Home.jsx';
 import Login from './components/Login/Login.jsx';
 import Register from './components/Register/Register.jsx';
 import Analyze from './components/Analyze/Analyze.jsx';
-import Login from './components/Login/Login.jsx';
 import Dashboard from './components/Dashboard/Dashboard.jsx';
 
 // Include any new stylesheets here
