@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import { Button, Input, Card, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
+import { Button, Input, Card, Form, Grid, Header, Image, Message, Segment, Panel } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
-
+import superagent from 'superagent'
 import styles from './Register.scss'
 import * as _CONFIG from '../_config/Config.js'
 
@@ -16,101 +16,67 @@ class Register extends Component {
                 name: '',
                 password: '',
                 provider: '',
-                email: '',
-                courses: []
+                zipcode: '',
+                email: ''
             },
             inputList: [],
-            showStudent: false,
-            showInstructor: false,
+            buttonDisabled: false,
             message: ''
         };
         this.onSubmit = this.onSubmit.bind(this);
         this.onChangeName = this.onChangeName.bind(this);
         this.onChangeEmail = this.onChangeEmail.bind(this);
         this.onChangePassword = this.onChangePassword.bind(this);
-        this.onChangeCourses = this.onChangeCourses.bind(this);
-        this.onAddBtnClick = this.onAddBtnClick.bind(this);
+        this.onChangeProvider = this.onChangeProvider.bind(this);
+        this.onChangeZipcode = this.onChangeZipcode.bind(this);
     }
 
     onSubmit(e) {
         e.preventDefault();
-
-        if(this.state.showInstructor===true){
-            axios.post(_CONFIG.devURL + '/register', {
-            name: this.state.user.name,
-            email: this.state.user.email,
-            password: this.state.user.password,
-            is_instructor: this.state.showInstructor
-          })
-          .then(function (response) {
-            console.log(response);
-            location.href = '/login';
-          })
-          .catch(function (error) {
-            console.log(error);
-            this.setState({
-                     message: 'Unable to register'
-                 })
-          });
+        this.setState({ buttonDisabled: true });
+        let formData = new FormData();
+        const files = this.filesInput.files;
+        for (var key in files) {
+          // check if this is a file:
+          if (files.hasOwnProperty(key) && files[key] instanceof File) {
+            formData.append(key, files[key]);
+            }
         }
-        // else{
-        //     var id = 0;
-        //     for(id = 1; id < this.state.user.courses.length; id++){
-        //         axios.put(_CONFIG.devURL + '/add-class', {
-        //             course: this.state.user.courses[id]
-        //           })
-        //           .then(function (response) {
-        //             console.log(response);
-        //           })
-        //           .catch(function (error) {
-        //             console.log(error);
-        //             this.setState({
-        //                      message: 'Unable to register class'
-        //                  })
-        //           });
-        //     }
+        console.log("data here")
+        console.log(formData);
+        superagent.post(_CONFIG.devURL + '/bill')
+        .send(formData)
+        .end((err, response) => {
+            if(err) {
+                //there was an error, handle it here
+            } else if(response.ok) {
+                //this was successful, handle it here
+                console.log(response);
+            }
+        });
+        
 
-            axios.post(_CONFIG.devURL + '/register', {
-            name: this.state.user.name,
-            email: this.state.user.email,
-            password: this.state.user.password,
-            is_instructor: this.state.showInstructor
-          })
-          .then(function (response) {
-            console.log(response);
-            location.href = '/login';
-          })
-          .catch(function (error) {
-            console.log(error);
-            this.setState({
-                     message: 'Unable to register '
-                 })
-          });
-        }
+        axios.post(_CONFIG.devURL + '/register', {
+        name: this.state.user.name,
+        email: this.state.user.email,
+        password: this.state.user.password,
+      })
+      .then(function (response) {
+        console.log(response);
+        // location.href = '/login';
+      })
+      .catch(function (error) {
+        console.log(error);
+        this.setState({
+            message: 'Unable to register '
+        })
+      });
+    }
     
     componentDidMount(){
         if(this.props.location.state !== undefined){
             console.log(this.props);
-            if(this.props.location.state.teacher==true){
-                this.ChangeToInstructor();
-            }
-            else if(this.props.location.state.student==true){
-                this.ChangeToStudent();
-            }
         }
-
-    }
-    ChangeToStudent() {
-        this.setState({
-            showStudent: true,
-            showInstructor: false
-        });
-    }
-    ChangeToInstructor() {
-        this.setState({
-            showStudent: false,
-            showInstructor: true
-        });
     }
     onChangeName(e) {
         const user = this.state.user;
@@ -123,6 +89,14 @@ class Register extends Component {
     onChangeProvider(e) {
         const user = this.state.user;
         user.provider = e.target.value;
+        this.setState({
+            user
+        })
+    }
+
+    onChangeZipcode(e) {
+        const user = this.state.user;
+        user.zipcode = e.target.value;
         this.setState({
             user
         })
@@ -143,19 +117,7 @@ class Register extends Component {
             user
         })
     }
-    onChangeCourses(e) {
-        const user = this.state.user;
-        user.courses = e.target.value;
-        this.setState({
-            user
-        })
-    }
-    onAddBtnClick(event) {
-        const inputList = this.state.inputList;
-        this.setState({
-            inputList: inputList.concat(<Input label="Course Code" className="pad" onChange={this.onChangeCourses} />)
-        });
-    }
+
     render() {
         return(
             <div className="wrapper-register">
@@ -218,7 +180,12 @@ class Register extends Component {
                               type='password'
                               onChange={this.onChangePassword} 
                             />
-
+                            <div>
+                            <input 
+                                type="file" 
+                                ref={(input) => { this.filesInput = input; }}
+                                name="file"/>
+                            </div>
                             <Button fluid size='large' type="submit" id="theme-blue">Register</Button>
                           </Segment>
                         </Form>

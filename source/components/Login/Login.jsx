@@ -18,12 +18,15 @@ class Login extends Component {
                 email: ''
             },
             redirect: false,
-            message: ''
+            message: '',
+            x: 0,
+            y: 0
         }
 
         this.onSubmit = this.onSubmit.bind(this);
         this.onChangeEmail = this.onChangeEmail.bind(this);
         this.onChangePassword = this.onChangePassword.bind(this);
+        this.onMouseMove = this.onMouseMove.bind(this);
     }
 
     onSubmit(e) {
@@ -47,29 +50,12 @@ class Login extends Component {
                     message: 'Incorrect name or password'
                 })
           });
-
-
-
-        // const email = encodeURIComponent(this.state.user.email);
-        // const password = encodeURIComponent(this.state.user.password);
-        // const formData = `email=${email}&password=${password}`;
-
-        // // create an AJAX request (This should probably done with Axios instead)
-        // const xhr = new XMLHttpRequest();
-        // xhr.open('post', _CONFIG.devURL);
-        // xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-        // xhr.responseType = 'json';
-        // xhr.addEventListener('load', () => {
-        //     if (xhr.status === 200) {
-        //         location.href = '/dashboard';
-
-        //     } else {
-        //         this.setState({
-        //             message: 'Incorrect name or password'
-        //         })
-        //     }
-        // });
-        // xhr.send(formData);
+        }
+    onMouseMove(e) {
+      this.setState({ 
+          x: e.nativeEvent.offsetX, 
+          y: e.nativeEvent.offsetY 
+      });
     }
 
     onChangeEmail(e) {
@@ -89,6 +75,7 @@ class Login extends Component {
     }
 
     render() {
+      const { x, y } = this.state;
         return(
             <div className="wrapper-login">
               {this.state.redirect ? <Redirect to={{pathname: '/dashboard', state:{user: this.state.userDetails}}}/> :
@@ -140,6 +127,9 @@ class Login extends Component {
                             <Button fluid size='large' type="submit" id="theme-blue">Login</Button>
                           </Segment>
                         </Form>
+                        <div onMouseMove={this.onMouseMove.bind(this)}>
+            <h1>Mouse coordinates: { x } { y }</h1>
+          </div>
                         <Message>
                           New to us? <Link to="/register">Sign Up</Link>
                         </Message>
