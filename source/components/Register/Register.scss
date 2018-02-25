@@ -1,5 +1,7 @@
+@import "source/styles/variables";
+
 .Register {
-    color: #3c4e52;
+    color: $dark-gray;
     margin-left: auto;
 	margin-right: auto;
 	text-align: center;
@@ -20,11 +22,11 @@
 	padding-bottom: 10px;
 	padding-top: 10px;
 }
-.hidden { 
-	display:none; 
+.hidden {
+	display:none;
 }
 .landing-image-register{
-    background-image: url('https://www.toptal.com/designers/subtlepatterns/patterns/intersection.png') !important;
+    background-image: url($background-image) !important;
     background-size: cover !important;
     min-height: 100vh;
     height: 100vh;
