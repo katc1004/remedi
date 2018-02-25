@@ -9,11 +9,13 @@
 	margin-left: auto;
 	margin-right: auto;
 	width: 100vh;
+	overflow: hidden;
 	//padding-top: 105px;
  	//padding-bottom: 180px;
 }
 #Analyze-container{
     height: 100vh;
+    overflow: auto;
     background: #ffffff !important;
 
 }
@@ -32,12 +34,28 @@
 	font-size: 30px;
 	font-weight: bold;
 }
-.landing-image{
-    background-image: url($home-image) !important;
-    background-size: cover !important;
+.bill_blue{
+    // background-image: url($home-image) !important;
+    // background-size: cover !important;
+    background-color: lightblue;
     min-height: 100vh;
 }
 
 .fileInput {
 	width: 75%;
+}
+
+.imgPreview {
+  text-align: center;
+  margin: 5px 15px;
+  height: auto;
+  width: 500px;
+  border-left: 1px solid gray;
+  border-right: 1px solid gray;
+  border-top: 5px solid gray;
+  border-bottom: 5px solid gray;
+  img{
+    width: 100%;
+    height: 100%;
+	}
 }
