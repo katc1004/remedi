@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button, Card} from 'semantic-ui-react'
+import { Button, Card, Popup} from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 
 import styles from './Analyze.scss'
@@ -18,13 +18,20 @@ class Analyze extends Component {
             x: 0,
             y: 0,
             file: '',
-            imagePreviewUrl: ''
+            imagePreviewUrl: '',
+            insuredCost: 0,
+            uninsuredCost: 0,
+            shortDescription: '',
+            longDescription: '',
+            hover: false
         }
 
         this.onSubmit = this.onSubmit.bind(this);
         this.onChangeEmail = this.onChangeEmail.bind(this);
         this.onChangePassword = this.onChangePassword.bind(this);
         this.onMouseMove = this.onMouseMove.bind(this);
+        this._handleSubmit = this._handleSubmit.bind(this);
+        this._handleImageChange = this._handleImageChange.bind(this);
     }
 
     onSubmit(e) {
@@ -52,8 +59,22 @@ class Analyze extends Component {
     onMouseMove(e) {
       this.setState({ 
           x: e.nativeEvent.offsetX, 
-          y: e.nativeEvent.offsetY 
+          y: e.nativeEvent.offsetY,
+          hover: false
       });
+      // for(int i = 0; i < list.length; i++){
+      //   if(this.x > list[i][x]){
+      //     this.setState({ 
+      //       hover: true
+      //     });
+      //   }
+      // }
+      if(this.x > 0){
+        this.setState({ 
+          hover: true
+        });
+      }
+      console.log(hover)
     }
 
     onChangeEmail(e) {
@@ -71,6 +92,7 @@ class Analyze extends Component {
             user
         })
     }
+
 
   _handleSubmit(e) {
     e.preventDefault();
@@ -112,7 +134,7 @@ class Analyze extends Component {
               <div className="ui vertical masthead center aligned segment bill_blue">
                 <div className="ui container">
                   <div className="ui large inverted secondary network menu">
-                    <Link to="/" className="item" id="logo">Remedi</Link>
+                    <Link to="/" className="item" id="logo_analyze">Remedi</Link>
                     <div className="right item">
                       <Link to="/login" className="item">
                       <Button className="ui button">Log Out</Button>
@@ -133,14 +155,17 @@ class Analyze extends Component {
                           onChange={(e)=>this._handleImageChange(e)} />
                       <button className="ui button" type="submit" onClick={(e)=>this._handleSubmit(e)}>Upload My Bill</button>
                     </form>
-                    <div className="imgPreview">
+                    <div>Mouse coordinates: { x } { y } (remove later)</div>
+                    <div className="imgPreview" onMouseMove={this.onMouseMove.bind(this)}>
                         {$imagePreview}
+                        <Popup
+                          trigger={this.state.hover}
+                          header={this.state.x}
+                          content={this.state.y}
+                        />
                     </div>
                   </div> 
                 </div>
-                    <div onMouseMove={this.onMouseMove.bind(this)} id="Image-container">
-                      <h1>Mouse coordinates: { x } { y }</h1>
-                    </div>
                   </div>
                 </div>
               </div>
