@@ -166,7 +166,7 @@ class Analyze extends Component {
         if (imagePreviewUrl) {
           $imagePreview = (<img src={imagePreviewUrl} />);
         } else {
-          $imagePreview = (<div className="previewText">U DIDNT IMAGE </div>);
+          $imagePreview = (<div className="previewText"></div>);
         }
 
       const { x, y } = this.state;
@@ -194,9 +194,9 @@ class Analyze extends Component {
                       <input className="fileInput"
                           type="file"
                           onChange={(e)=>this._handleImageChange(e)} />
-                      <button className="ui button" type="submit" onClick={(e)=>this._handleSubmit(e)}>Upload My Bill</button>
+                      <button className="ui button" type="submit" onClick={(e)=>this._handleSubmit(e)} id="theme-blue">Upload My Bill</button>
                     </form>
-                    <div>Mouse coordinates: { x } { y } (remove later)</div>
+                    <div>Mouse coordinates: { x } { y }</div>
                     <div className="imgPreview" onMouseMove={this.onMouseMove.bind(this)}>
                         {$imagePreview}
                         {this.state.hover && (<Popup
