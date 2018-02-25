@@ -1,3 +1,5 @@
+@import "source/styles/variables";
+
 .wrapper-home {
   height: 100vh;
   position: relative;
@@ -28,7 +30,7 @@
 }
 #theme-white{
 	background-color: #FFFFFF;
-	color: #3c4e52;	//dark gray
+	color: $dark-gray;	//dark gray
 	border: 1px solid #ccd3db; //light gray
 }
 #title-remedi{
@@ -42,7 +44,7 @@
 	font-weight: bold;
 }
 .landing-image{
-    background-image: url('http://i63.tinypic.com/258y0kl.jpg') !important;
+    background-image: url($home-image) !important;
     background-size: cover !important;
     min-height: 100vh;
 }

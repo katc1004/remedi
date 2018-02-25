@@ -1,9 +1,11 @@
+@import "source/styles/variables";
+
 .wrapper-login{
   	height: 100vh;
 	position: relative;
 }
 .Login {
-    color: #3c4e52;
+    color: $dark-gray;
     margin-left: auto;
 	margin-right: auto;
 	text-align: center;
@@ -17,7 +19,7 @@
 }
 
 .landing-image-login{
-    background-image: url('https://www.toptal.com/designers/subtlepatterns/patterns/intersection.png') !important;
+    background-image: url($background-image) !important;
     background-size: cover !important;
     min-height: 100vh;
     height: 100vh;
